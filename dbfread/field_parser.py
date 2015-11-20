@@ -161,7 +161,14 @@ class FieldParser:
                 return None
             else:
                 # Account for , in numeric fields
-                return float(data.replace(b',', b'.'))
+                try:
+                    return float(data.replace(b',', b'.'))
+                except ValueError:
+                    # To find the reason off error
+                    # decomente the next two line
+                    #print("Value is : %s" % data)
+                    #raw_input("pres Enter to continue!")
+                    return 0.0
 
     def parseO(self, field, data):
         """Parse long field (O) and return float."""
